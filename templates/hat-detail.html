@@ -89,12 +89,12 @@
                             <input type="hidden" name="hat_change_prices_tmp"  value="" />
                             <input type="hidden" id="new_total_price"  value="{{ hatdiy.hat_price }}" />
                         </div>
-                        <h5 id="back_c" style="margin-left: 219px;display: none;color: red;float: left;margin-top: -27px;">交期需延长10天</h5>
                     </li>
                     <div class="line-color"></div>
                     <li>
                         <span>颜色：</span>
                         <div id="hat_change_color">{{ hatdiy.hat_colour }}</div>
+                        <h5 id="back_c" style="margin-left: 219px;display: none;color: red;float: left;margin-top: -27px;">交期需延长10天</h5>
                     </li>
                     <li>
                         <div class="color"  id="color_img">
@@ -259,22 +259,22 @@
 <script>
 jq164(function($) {
     $('#c_submit').click(function (e) {
-        $(this).css({"background-color": "#e61d4c"})
+        $(this).css({"background-color": "#e61d4c"});
 
         var hat_change_materials = $("input[name=hat_change_materials]").val();
-        var hat_change_color = $('#hat_change_color').html()
-        var hat_total_price = $('#hat_total_price').val()
-        var hat_nums = $('#hat_nums').val()
-        var hat_meter_id = $("#hat_meter_id").val()
-        var hat_components_price = $("#new_total_price").val()
-        var hat_number = $(".hat_change_image").attr('id')
-        var hat_change_materials_id = $("input[name=hat_materials_id]").val()
-        var hat_default_materials_id = $('.hat_materials').prop('id')
-        var hat_change_image1 = $("#new_image1").attr('src')
-        var hat_change_image2 = $("#new_image2").attr('src')
-        var hat_change_image3 = $("#new_image3").attr('src')
-        var hat_change_image4 = $("#new_image4").attr('src')
-        var hat_change_image5 = $("#new_image5").attr('src')
+        var hat_change_color = $('#hat_change_color').html();
+        var hat_total_price = $('#hat_total_price').val();
+        var hat_nums = $('#hat_nums').val();
+        var hat_meter_id = $("#hat_meter_id").val();
+        var hat_components_price = $("#new_total_price").val();
+        var hat_number = $(".hat_change_image").attr('id');
+        var hat_change_materials_id = $("input[name=hat_materials_id]").val();
+        var hat_default_materials_id = $('.hat_materials').prop('id');
+        var hat_change_image1 = $("#new_image1").attr('src');
+        var hat_change_image2 = $("#new_image2").attr('src');
+        var hat_change_image3 = $("#new_image3").attr('src');
+        var hat_change_image4 = $("#new_image4").attr('src');
+        var hat_change_image5 = $("#new_image5").attr('src');
 
         $.ajax({
             type: "post",
@@ -301,11 +301,11 @@ jq164(function($) {
                 xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
             },
             success: function (result) {
-                console.log(this.data)
+                console.log(this.data);
                 {#               alert(result.msg)#}
                 window.location.replace("/alldiy/")
             }, error: function (e) {
-                console.log(this.data)
+                console.log(this.data);
                 {#alert(JSON.stringify(e));#}
                 alert('操作有误');
             }
