@@ -1,0 +1,334 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    产品详情页
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.productColorizer.css' %}" />
+<link href="{% static 'css/detail.css' %}" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+
+<div class="container con">
+    <div class="row">
+        <a href="{% url 'index' %}"><h5 class="sy">首页/</h5></a>
+        <a href="{% url 'hat' hatdiy.goods_categor.id %}"><h5 class="ts">{{ hatdiy.goods_categor }}/</h5></a>
+        <h5><span>{{ hatdiy.hat_name }}</span></h5>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12 product pic" style="position: relative;">
+                    <div id="div1" style="width: 715px;height: 420px ">
+                        <img src="{{ hatdiy.hat_front.url }}" class="hat_change_image" id="{{ hatdiy.hat_number }}"/>
+                        <img class="mask img-big" src="{{ hatdiy.hat_null_button.url }}" id="hat_back_buttom"/>
+                        <img src=""  id="hat_back"/>
+                        <img src=""  id="hat_back_buttom02"/>
+                        <div id="logos">
+                            <img class="img1" id="pic" src="">
+                            <img class="img2" id="pic2" src="">
+                            <img class="img3" id="pic3" src="">
+                            <img class="img4" id="pic4" src="">
+                        </div>
+
+
+
+{#                        <canvas id="canvas" width="715" height="420" src=""></canvas>#}
+                    </div>
+                    <div id = "jtu" style="position: absolute;top:0%; right: 6%;width:53px;height:23px;display: none;z-index: 12">
+                        <h4 class="btn01" id="btn01" style="">截图</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="smallImg row">
+                <div class="smllImg-One col-md-3">
+                    <div style="position: relative">
+                        <img src="{{ hatdiy.hat_left.url }}" id="hat_small03"/>
+                        <img src="{{ hatdiy.hat_right.url }}" id="hat_small02"/>
+                        <img src="{{ hatdiy.hat_back.url }}" id="hat_small01"/>
+                        <img src=""  id="hat_back_small"/>
+                        <img src="{{ hatdiy.hat_bottom.url }}" id="hat_small04"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-preview col-md-4" >
+            <div id="detail_form">
+                <ul>
+                    <li>
+                        <b>{{ hatdiy.hat_name }}</b>
+                    </li>
+                    <li>
+                        ¥<label id="c_price">{{ hatdiy.hat_price }}</label>
+                    </li>
+                    <div class="line-color"></div>
+                    <li>
+                        <span>默认材质：</span>
+                        <div class="hat_materials" id="{{ hatdiy.hat_change_materials.hat_materials_Id }}">
+                            {{ hatdiy.hat_change_materials|default_if_none:'' }}</div>
+                    </li>
+                    <li>
+                        <span>材质选择：</span>
+                        <div>
+                            <select id="materials">
+                                <option value="0">请选择</option>
+                                {% for m in materials %}
+                                    {% if hatdiy.hat_change_materials_id != m.hat_materials_Id %}
+                                        <option value="{{ m.price }}" name="{{ m.hat_materials_Id }}">{{ m.materials }} + {{ m.price }} 元</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+
+                            <input type="hidden" name="hat_change_materials"  value="" />
+                            <input type="hidden" name="hat_materials_id" value="" />
+                            <input type="hidden" name="hat_change_prices_tmp"  value="" />
+                            <input type="hidden" id="new_total_price"  value="{{ hatdiy.hat_price }}" />
+                        </div>
+                        <h5 id="back_c" style="margin-left: 219px;display: none;color: red;float: left;margin-top: -27px;">交期需延长10天</h5>
+                    </li>
+                    <div class="line-color"></div>
+                    <li>
+                        <span>颜色：</span>
+                        <div id="hat_change_color">{{ hatdiy.hat_colour }}</div>
+                    </li>
+                    <li>
+                        <div class="color"  id="color_img">
+                            {% for col in hatdiy_color %}
+                                <a><img src="{{ col.color.url }}" id="{{ col.id }}" name="{{ col.hat_colour.hat_colour_name }}" class="image_07 img-circle" /></a>
+                                <a><img src="{{ col.image.url }}" id="{{ col.hat_number }}" class="image_06"/></a>
+                                <a><img src="{{ col.hat_back.url }}" id="image_02"/></a>
+                                <a><img src="{{ col.hat_right.url }}" id="image_03"/></a>
+                                <a><img src="{{ col.hat_left.url }}" id="image_04"/></a>
+                                <a><img src="{{ col.hat_bottom.url }}" id="image_05"/></a>
+                                <a><img src="{{ col.hat_null_button.url }}" id="image_07"/></a>
+                            {% endfor %}
+                            <input type="hidden" name="color_id" id="color_id" value=""/>
+                       </div>
+                    </li>
+                    <div class="line-color"></div>
+                    <li>
+                        <span style="float: left">更换后扣：</span>
+                        <div class="black_B" id="back_img">
+                            {% for but in hatdiy_button %}
+                                <a><img src="{{ but.hat_back_image.url }}"  name="{{ but.hat_back_Id }}" class="back_image"/></a>
+                            {% endfor %}
+                            <input type="hidden" name="hat_meter_id" id="hat_meter_id" value=""/>
+                        </div>
+{#                        <h5 id="back_c" style="margin-left: 69px;display: none;color: red">交期需延长10天</h5>#}
+                    </li>
+                    <div class="line-color"></div>
+                    <li>
+                        <span>logo选择：</span>
+                        <div class="up_logo">
+                            <a><img src="" id="new_logo"/></a>
+                            <input type="file" name="mylogo" style="line-height: normal"/>
+{#                            <input type="file" name="mylogo" multiple="multiple" style="margin-left: 71px;line-height: normal;"/>#}
+{#                            <input type="file" name="mylogo1"/>#}
+                            <button type="button" name="ajaxsubmit" class="btn btn-sm btn-info" style="margin-right: 0;">提交</button>
+                            <br>
+                            <h5 style="margin-left: 69px">上传文件为png格式</h5>
+                        </div>
+
+                    </li>
+                    <div class="line-color"></div>
+                </ul>
+
+                <div id="image_num" style="position: relative">
+                    <img src="" class="new_image1" id="new_image1" width="70px" height="40px" style="display: none">
+                    <img src="{{ hatdiy.hat_front.url }}" class="new_image5" id="new_image5" width="70px" height="40px" style="display: none">
+{#                    <div class="icon_01" style="position: absolute; top:4%; right: 81%;font-size: 13px;display: none">#}
+{#                        <span class="glyphicon glyphicon-remove-circle"></span>#}
+{#                    </div>#}
+
+                    <img src="" class="new_image2" id="new_image2" width="70px" height="40px" style="display: none">
+{#                    <div style="position: absolute; top:4%; right: 60%;font-size: 13px;display: none">#}
+{#                        <span class="glyphicon glyphicon-remove-circle"></span>#}
+{#                    </div>#}
+
+                    <img src="" class="new_image3" id="new_image3" width="70px" height="40px" style="display: none">
+{#                    <div style="position: absolute; top:4%; right: 40%;font-size: 13px;display: none">#}
+{#                        <span class="glyphicon glyphicon-remove-circle"></span>#}
+{#                    </div>#}
+
+                    <img src="" class="new_image4" id="new_image4" width="70px" height="40px" style="display: none">
+{#                    <div style="position: absolute; top:4%; right: 19%;font-size: 13px;display: none">#}
+{#                        <span class="glyphicon glyphicon-remove-circle"></span>#}
+{#                    </div>#}
+                </div>
+
+                <table>
+                    <tr>
+                        <th class="num3">数量: </th>
+                        <th>总价：</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="num4" type="number" name="hat_nums" min="1" placeholder="填写数量"  id="hat_nums"/>
+                            <input type="hidden" name="hat_change_number_tmp"  value="1" />
+                        </td>
+                        <td>
+                            <mark>
+                                <input type="text" name="hat_total_price" id="hat_total_price" value="{{ hatdiy.hat_price }}"  readonly/>
+                            </mark><br/>
+                        </td>
+                    </tr>
+{#                    <tr>#}
+{#                        <td>#}
+{#                            <img src="{{ hatdiy.hat_front.url }}" class="new_image" id="new_image" width="70px" height="40px">#}
+{#                        </td>#}
+{#                    </tr>#}
+                    <tr>
+                        <td  colspan="2">
+                            {% if request.user.is_authenticated %}
+                                <input type="button" class="btn btn-sm pull-right tj" id="c_submit" value="提 交"/>
+                            {% else %}
+                                <a href="{% url 'login' %}"><input type="button" class="btn btn-sm pull-right tj" id="c_submit" value="提 交"/></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label id="price_show">数量大于2000打8折</label>
+                        </td>
+                    </tr>
+                    <div class="alert-info">{{ data.msg }}</div>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row product-info">
+        <div class="info01"></div>
+        <h2 style="">产品信息</h2>
+        <div class="info02">
+            {% autoescape off %}
+            {{ hatdiy.detail }}
+            {% endautoescape %}
+        </div>
+    </div>
+
+{#    <div class="row hot_sell" style="margin-top: 47px;position:relative;">#}
+{#		<div style="border-bottom:1px solid #CCC;margin: 40px 21px 0 14px"></div>#}
+{#        <h3 style="text-align:center;margin: 30px;">推荐</h3>#}
+{#            <div class="col-md-3">#}
+{#               <a href=""><img class="img-responsive" src="/static/image/2头饰.png" alt=""></a>#}
+{#                <div class="image01">#}
+{#                    <p>弯眉五片帽</p>#}
+{#                    <p style="padding-left:14%;color:#f30a0a">$25</p>#}
+{#                </div>#}
+{#		    </div>#}
+{#            <div class="col-md-3">#}
+{#                <a href=""><img class="img-responsive" src="/static/image/2头饰.png" alt=""></a>#}
+{#                <div class="image01">#}
+{#                    <p>弯眉五片帽</p>#}
+{#                    <p style="padding-left:14%;color:#f30a0a">$25</p>#}
+{#                </div>#}
+{#            </div>#}
+{#             <div class="col-md-3">#}
+{#                <a href=""><img class="img-responsive" src="/static/image/2头饰.png" alt=""></a>#}
+{#                <div class="image01">#}
+{#                    <p>弯眉五片帽</p>#}
+{#                    <p style="padding-left:14%;color:#f30a0a">$25</p>#}
+{#                </div>#}
+{#             </div>#}
+{#             <div class="col-md-3">#}
+{#                <a href=""><img class="img-responsive" src="/static/image/2头饰.png" alt=""></a>#}
+{#                <div class="image01">#}
+{#                    <p>弯眉五片帽</p>#}
+{#                    <p style="padding-left:14%;color:#f30a0a">$25</p>#}
+{#                </div>#}
+{#             </div>#}
+{#        </div>#}
+
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+
+<script type="text/javascript" src="{% static 'js/jquery.productColorizer.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/prettify.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/init.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/hat_detail.js' %}"></script>
+<script>
+jq164(function($) {
+    $('#c_submit').click(function (e) {
+        $(this).css({"background-color": "#e61d4c"})
+
+        var hat_change_materials = $("input[name=hat_change_materials]").val();
+        var hat_change_color = $('#hat_change_color').html()
+        var hat_total_price = $('#hat_total_price').val()
+        var hat_nums = $('#hat_nums').val()
+        var hat_meter_id = $("#hat_meter_id").val()
+        var hat_components_price = $("#new_total_price").val()
+        var hat_number = $(".hat_change_image").attr('id')
+        var hat_change_materials_id = $("input[name=hat_materials_id]").val()
+        var hat_default_materials_id = $('.hat_materials').prop('id')
+        var hat_change_image1 = $("#new_image1").attr('src')
+        var hat_change_image2 = $("#new_image2").attr('src')
+        var hat_change_image3 = $("#new_image3").attr('src')
+        var hat_change_image4 = $("#new_image4").attr('src')
+        var hat_change_image5 = $("#new_image5").attr('src')
+
+        $.ajax({
+            type: "post",
+            data: {
+                "hat_change_materials": hat_change_materials,
+                "hat_change_color": hat_change_color,
+                "hat_total_price": hat_total_price,
+                "hat_nums": hat_nums,
+                "hat_number": hat_number,
+                'hat_change_image1': hat_change_image1,
+                'hat_change_image2': hat_change_image2,
+                'hat_change_image3': hat_change_image3,
+                'hat_change_image4': hat_change_image4,
+                'hat_change_image5': hat_change_image5,
+                'hat_change_id':{{ hatdiy.hat_made_Id }},
+                'hat_change_materials_id': hat_change_materials_id,
+                'hat_default_materials_id':hat_default_materials_id,
+                'hat_components_price':hat_components_price,
+            },
+            datatype: 'JSON',
+            url: "/update/",
+            cache: false,
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            },
+            success: function (result) {
+                console.log(this.data)
+                {#               alert(result.msg)#}
+                window.location.replace("/alldiy/")
+            }, error: function (e) {
+                console.log(this.data)
+                {#alert(JSON.stringify(e));#}
+                alert('操作有误');
+            }
+        });
+    });
+});
+
+$(function(){
+    $('.hot_sell img').hover(function(){
+         $(this).parent().next().stop().slideDown();
+    },function(){
+        $(this).parent().next().stop().slideUp();
+    })
+})
+</script>
+
+<script LANGUAGE="JAVASCRIPT">
+	function bbimg(o){
+	   var zoom=parseInt(o.style.zoom, 10)||100;
+	zoom+=event.wheelDelta/12;
+	if (zoom>0)
+	 o.style.zoom=zoom+'%';
+	   return false;
+	}
+</script>
+  {% endblock %}

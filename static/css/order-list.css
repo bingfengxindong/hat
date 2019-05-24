@@ -1,0 +1,200 @@
+#portfolio{
+    min-height: 100%;
+}
+
+#portfolio .row .col-sm-offset-7{
+    margin-top: 15px
+}
+
+.nav-menu{
+    margin: 30px 0;
+    border: 1px solid #f6f6f6;
+}
+
+.nav-menu .col-sm-5,
+.nav-menu .col-sm-1,
+.nav-menu .col-sm-2,
+.nav-menu .col-sm-3{
+    background-color:white;
+    height: 50px;
+    text-align: center;
+    line-height: 47px;
+}
+
+#portfolio .menu{
+    margin-bottom: 25px;
+    border: 1px solid #eceaea
+}
+
+#portfolio .menu .row02{
+    margin-left: 0;
+    height: 46px;
+}
+
+#portfolio .menu .row02 .numbers{
+    background-color:#d2d2d2;
+    width: 1140px
+}
+
+#portfolio .menu .row02 .numbers h5{
+    padding: 15px 36px;
+    margin: 0
+}
+
+#portfolio .menu .row03{
+    margin: 0;
+}
+
+#portfolio .menu .row03 .col01{
+    background-color:white;
+    height: 189px
+}
+
+#portfolio .menu .row03 .col01 img{
+    /*width: 83%;*/
+    margin-top: 23px;
+    margin-left: 8px;
+    display:block
+}
+
+#portfolio .menu .row03 .col02{
+    background-color:white;
+    height: 189px;
+    line-height: 26px;
+    font-size: 13px;
+}
+
+#portfolio .menu .row03 .col02 .name{
+    font-size: 23px;
+    margin-top: 27px;
+}
+
+#portfolio .menu .row03 .col02 button{
+    margin-right: 0;
+    margin-top: 9px;
+    height: 21px;
+    line-height: 5px;
+}
+
+#portfolio .menu .row03 .col02 a{
+    color: #0f0f0f;
+}
+
+#portfolio .menu .row03 .col-sm-1{
+    background-color:white;
+    font-size: 20px;
+    height: 189px;
+    text-align: center;
+    line-height: 190px
+}
+
+#portfolio .menu .row03 .col04{
+    background-color:white;
+    font-size: 20px;
+    height: 189px;
+    text-align: center;
+    line-height: 190px;
+    color: #e61d4c;
+    border-left: 1px solid #eceaea;
+    border-right: 1px solid #eceaea
+}
+
+#portfolio .menu .row03 .col03{
+    background-color:white;
+    height: 189px;
+    text-align: center
+}
+
+#portfolio .menu .row03 .col03 #order{
+    width: 170px;
+    height: 25px;
+    border-radius:5px;
+    border: 1px solid #e61d4c;
+    margin: 50px auto;
+    color: black;
+}
+
+#portfolio .menu .row03 .col03 #message{
+    width: 170px;
+    height: 25px;
+    border-radius:5px;
+    border: 1px solid #e61d4c;
+    margin: -20px auto;
+    color: black
+}
+
+.pageturn {
+    clear: both;
+    height: 30px;
+    margin: 50px auto;
+    display: table;
+    text-align: center;
+}
+
+.pageturn .pagelist {
+    display: table-cell;
+    vertical-align: middle;
+    overflow: hidden;
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.pageturn li {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 10px;
+    float: left;
+    text-align: center;
+}
+
+.pageturn li:first-child {
+    margin-left: 0;
+}
+
+.pageturn li:hover a, .pageturn .active a {
+    background: #717171;
+    color: #fff;
+    border-color: #eaeaea;
+}
+
+.pageturn a {
+    border: 1px solid #eaeaea;
+    display: block;
+    height: 28px;
+    color: #6c6c6c;
+}
+
+.pageturn .long {
+    width: 100px;
+}
+
+.pageturn .none a {
+    border: 0;
+}
+
+th{
+    text-align:center;/** 设置水平方向居中 */
+    /*vertical-align:middle!** 设置垂直方向居中 *!*/
+}
+
+.table > tbody > tr > th{
+    border: 0;
+}
+ /*带搜索图标的搜索框样式*/
+#searchInput{float: left;width:262px;}
+#searchInput hr{margin: -29px 223px;height: 29px;}
+#searchInput .form-control{border-radius:20px;border: 1px solid #e8e8e8;}
+#searchTubiao{float:left;font-size:18px;margin-left:-30px;margin-top:2px;}
+#searchTubiao a{color:#e8e8e8;text-decoration:none;}
+#searchTubiao a:hover {text-decoration:none;color: #0088CF;}
+
+.max{
+    width: 100%;
+    height: auto;
+}
+
+.min{
+    width: 254px;
+    height: auto;
+}

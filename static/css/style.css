@@ -1,0 +1,116 @@
+﻿/* css reset
+--------------------------------------------- */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video {
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:100%;
+	font:inherit;
+	vertical-align:baseline;
+	outline:none;
+}
+
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+/* instructions
+
+--------------------------------------------- */
+.product-preview {
+
+}
+
+
+.product-preview .product {
+	position:relative;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	background: #fff;
+	padding:1px;
+	border:1px solid #ccc;
+	width:530px;
+	height:520px;;
+}
+
+.product-preview .product img {
+	width: 500px;
+	top:1px;
+	left:1px;
+}
+
+.secondary {
+	top:0px !important;
+	left:2px !important;
+}
+
+/* options
+--------------------------------------------- */
+
+#options table {
+	margin:10px 0;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	border-collapse: collapse;
+	color:#444;
+	border-left:1px solid #ccc;
+	border-top:1px solid #ccc;
+}
+
+#options th {
+	text-align: left;
+	font-weight: bold;
+}
+
+#options th, #options td {
+	padding:10px;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+
+#options em {
+	font-style:italic;
+	color:#999;
+	font-size:0.85em;
+}
+
+/* download
+--------------------------------------------- */
+
+@media screen {
+	.str { color: #080 }  /* string content */
+	.kwd { color: #008 }  /* a keyword */
+	.com { color: #800 }  /* a comment */
+	.typ { color: #606 }  /* a type name */
+	.lit { color: #066 }  /* a literal value */
+	/* punctuation, lisp open bracket, lisp close bracket */
+	.pun, .opn, .clo { color: #660 }
+	.tag { color: #008 }  /* a markup tag name */
+	.atn { color: #606 }  /* a markup attribute name */
+	.atv { color: #080 }  /* a markup attribute value */
+	.dec, .var { color: #606 }  /* a declaration; a variable name */
+	.fun { color: red }  /* a function name */
+}
+
+@media print, projection {
+	.str { color: #060 }
+	.kwd { color: #006; font-weight: bold }
+	.com { color: #600; font-style: italic }
+	.typ { color: #404; font-weight: bold }
+	.lit { color: #044 }
+	.pun, .opn, .clo { color: #440 }
+	.tag { color: #006; font-weight: bold }
+	.atn { color: #404 }
+	.atv { color: #060 }
+}
+
+

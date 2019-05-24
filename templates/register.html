@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+	<title>请注册</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/register.js' %}"></script>
+</head>
+<body>
+
+<div class="bg" id="dialogBg"></div>
+<section>
+    <div class="container c-box bg-box">
+        <div class="row" style="text-align: center;">
+            <img alt="Brand" src="/static/image/logo/ks04.png">
+        </div>
+        <div class="reg_form login-box clearfix">
+            <h1>账号注册</h1>
+            <form  method="post" autocomplete="off">
+                {% csrf_token %}
+                <div class="form-group marb20 ">
+                    <input name="user_name" id="user_name" type="text" placeholder="用户名" />
+                    <span class="error_tip">提示信息</span>
+                </div>
+                <div class="form-group marb8 ">
+                    <input name="pwd" id="pwd" type="password" placeholder="请输入您的密码" />
+                    <span class="error_tip">提示信息</span>
+                </div>
+                <div class="form-group marb8 ">
+                    <input name="cpwd" id="cpwd" type="password" placeholder="请确认您的密码" />
+                    <span class="error_tip">提示信息</span>
+                </div>
+                <div class="form-group marb8 ">
+                    <input name="email" id="email" type="text" placeholder="邮箱" />
+                    <span class="error_tip">提示信息</span>
+                </div>
+                <div class="error btns login-form-tips" id="jsLoginTips">
+                     {% for key,error in login_form.errors.items %}
+                         {{ error }}
+                     {% endfor %}{{ msg }}
+                </div>
+                <input class="btn btn-green reg_sub" id="jsLoginBtn" type="submit" value="立即注册 > " />
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+
+</html>

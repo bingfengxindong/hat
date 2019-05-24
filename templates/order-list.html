@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    我的订单
+{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome/css/font-awesome.css' %}" />
+<link href="{% static 'css/order-list.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" id="portfolio" name="portfolio">
+    <div class="row">
+        <div class="col-sm-2">
+            <h3>我的订单</h3>
+        </div>
+
+        <div class="col-sm-3 col-sm-offset-7">
+            <span class="inputSearch" id="searchInput">
+                <input type="text" class="form-control input-sm" id='search' name="search" value="" placeholder="搜索订单" autocomplete="on"/>
+                <hr size=500 width="2" color="#e8e8e8">
+            </span>
+
+            <span class="searchTubiao" id="searchTubiao">
+                <a href="#" title="搜索" class="fa fa-search" id="tubiao"></a>
+            </span>
+        </div>
+    </div>
+    <div class="row nav-menu">
+        <div class="col-sm-5">
+            商品信息
+        </div>
+        <div class="col-sm-1">
+            单价
+        </div>
+        <div class="col-sm-1">
+            数量
+        </div>
+        <div class="col-sm-2">
+            总价
+        </div>
+        <div class="col-sm-3">
+            订单详情
+        </div>
+    </div>
+
+    {% for ch in all_change_hat.object_list %}
+        {% if ch.hat_change_id %}
+            <div class="menu">
+                <div class="row row02">
+                    <div class="numbers">
+                        <h5>下单日期：{{ ch.add_time }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单编号：{{ ch.hat_order_id }}</h5>
+                    </div>
+                </div>
+                <div class="row row03">
+                    <div class="col-sm-3 col01 img2">
+                        {% if ch.hat_change_image5 == '' %}
+                            <img class="img-responsive" src="{{ ch.hat_change_image5 }}" alt="" onclick="showMaxImg(this)" style="display: none">
+                        {% else %}
+                            <img class="img-responsive" src="{{ ch.hat_change_image5 }}" alt="" onclick="showMaxImg(this)">
+                        {% endif %}
+
+{#                        <div class="row">#}
+                            {% if ch.hat_change_image1 != '' and ch.hat_change_image2 == '' and ch.hat_change_image3 == '' and ch.hat_change_image4 == ''%}
+{#                                <div class="col-sm-12">#}
+                                    <img class="img-responsive" src="{{ ch.hat_change_image1 }}" alt="" onclick="showMaxImg(this)">
+{#                                </div>#}
+                            {% endif %}
+
+                            {% if  ch.hat_change_image1 != '' and ch.hat_change_image2 != '' and ch.hat_change_image3 == '' and ch.hat_change_image4 == ''%}
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <img class="img-responsive" src="{{ ch.hat_change_image1 }}" alt="" onclick="showMaxImg(this)">
+                                    </div>
+                                     <div class="col-sm-6">
+                                        <img class="img-responsive" src="{{ ch.hat_change_image2 }}" alt="" onclick="showMaxImg(this)">
+                                     </div>
+                                 </div>
+                            {% endif %}
+
+                            {% if  ch.hat_change_image1 != '' and ch.hat_change_image2 != '' and ch.hat_change_image3 != '' and ch.hat_change_image4 == ''%}
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <img class="img-responsive" src="{{ ch.hat_change_image1 }}" alt="" onclick="showMaxImg(this)" style="">
+                                    </div>
+                                     <div class="col-sm-6">
+                                        <img class="img-responsive" src="{{ ch.hat_change_image2 }}" alt="" onclick="showMaxImg(this)" style="">
+                                     </div>
+                                    <div class="col-sm-6">
+                                        <img class="img-responsive" src="{{ ch.hat_change_image2 }}" alt="" onclick="showMaxImg(this)" style="">
+                                     </div>
+                                 </div>
+                           {% endif %}
+
+                            {% if  ch.hat_change_image1 != '' and ch.hat_change_image2 != '' and ch.hat_change_image3 != '' and ch.hat_change_image4 != ''%}
+                                <div class="col-sm-6">
+                                    <img class="img-responsive" src="{{ ch.hat_change_image1 }}" alt="" onclick="showMaxImg(this)" style="">
+                                </div>
+                                <div class="col-sm-6">
+                                    <img class="img-responsive" src="{{ ch.hat_change_image2 }}" alt="" onclick="showMaxImg(this)" style="">
+                                 </div>
+                                <div class="col-sm-6">
+                                    <img class="img-responsive" src="{{ ch.hat_change_image3}}" alt="" onclick="showMaxImg(this)" style="">
+                                 </div>
+                                <div class="col-sm-6">
+                                    <img class="img-responsive" src="{{ ch.hat_change_image4}}" alt="" onclick="showMaxImg(this)" style="">
+                                 </div>
+                            {% endif %}
+{#                        </div>#}
+
+{#                            <div class="col-sm-6">#}
+{#                                <img class="img-responsive" src="{{ ch.hat_change_image2 }}" alt="" onclick="showMaxImg(this)" style="margin-left: 0;">#}
+{#                            </div>#}
+{#                            <div class="col-sm-6">#}
+{#                                <img class="img-responsive" src="{{ ch.hat_change_image3 }}" alt="" onclick="showMaxImg(this)">#}
+{#                            </div>#}
+{#                            <div class="col-sm-6">#}
+{#                                <img class="img-responsive" src="{{ ch.hat_change_image4 }}" alt="" onclick="showMaxImg(this)" style="margin-left: 0;">#}
+{#                            </div>#}
+{#                                <img src="" id="img2"/>#}
+                    </div>
+{#                </div>#}
+                    <div class="modal fade bs-example-modal-lg text-center" id="imgModal" tabindex="-1" role="dialog" data-toggle="modal" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" style="display:inline-block;width:auto;margin: 110px auto;">
+                            <div class="modal-content">
+                               <div id="imgshow"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col02">
+                        <div class="name">
+                            <a href="{% url 'hat_detail' ch.hat_change_id %}">
+                                {{ ch.hat_change.hat_name}}
+                            </a>
+                        </div>
+                        <div>
+                        颜色:{{ ch.hat_change_color }}
+                        </div>
+                        <div>
+                        材质:{{ ch.hat_change_materials }}
+                        </div>
+                        <div>
+                            <input id='file' type="file" name="file" class="pull-left" />
+                            <button type="submit" name="subt" class="btn btn-sm pull-left">上传</button>
+                            <div class="alert-info">{{ data.msg }}</div>
+                            {% csrf_token %}
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        ¥{{ ch.hat_components_price  }}
+                    </div>
+                    <div class="col-sm-1">
+                        {{ ch.hat_nums }}
+                    </div>
+                    <div class="col-sm-2 col04">
+                        ¥{{ ch.hat_total_price }}
+                    </div>
+
+                    <div class="col-sm-3 col03" id="det">
+                        <a href="{% url 'flows' ch.hat_update_Id %}">
+                            <div id="order">订单状态</div>
+                        </a>
+                        <a href="{% url 'messages' ch.hat_update_Id %}">
+                            <div id="message">留言备注</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <div class="pageturn">
+        <ul class="pagelist">
+        {% if all_change_hat.has_previous %}
+            <li class="long"><a href="?{{ all_change_hat.previous_page_number.querystring }}">上一页</a></li>
+        {% endif %}
+
+        {% for page in all_change_hat.pages %}
+            {% if page %}
+                {% ifequal page all_change_hat.number %}
+                <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                {% else %}
+                    <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                {% endifequal %}
+            {% else %}
+                    <li class="none"><a href="">...</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if all_change_hat.has_next %}
+            <li class="long"><a href="?{{ all_chang_hat.next_page_number.querystring }}">下一页</a></li>
+        {% endif %}
+        </ul>
+    </div>
+
+    </div><!-- /container -->
+
+{% endblock %}
+
+{% block custom_js %}
+<script type="text/javascript">
+$("#search").focus(function(){
+    $("#search").addClass("search");
+    $("#tubiao").addClass("tubiao");
+});
+
+$("#search").blur(function(){
+    $("#search").removeClass("search");
+    $("#tubiao").removeClass("tubiao");
+})
+
+$(function ($) {
+    $('input[name=file]').on('change', function (e) {
+        $('button[name=subt]').on('click', function (e) {
+            var formData = new FormData();
+            formData.append('file', $('input[name=file]')[0].files[0]);
+            $.ajax({
+                url: '/file/',
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (result) {
+                    console.log(this.data)
+                    alert(result.msg)
+                    window.location.reload()
+                },
+            })
+        });
+    });
+
+    $('#det a div').click(function () {
+        $(this).css({"background-color": "#e61d4c"})
+    });
+});
+
+function showMaxImg(obj){
+    var src=$(obj).attr("src");
+    $("#imgModal").find("#imgshow").html("<img src='"+src+"' class='carousel-inner img-responsive img-rounded' data-dismiss='modal'>");
+    $("#imgModal").modal('show');
+    }
+</script>
+{% endblock %}

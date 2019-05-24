@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+{% block title %}
+    产品分类
+{% endblock %}
+
+{% block custom_css %}
+<link href="{% static 'css/goods-list.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+<style>
+    p{
+        margin:0;
+        }
+    .image01{
+        position:absolute;
+        width:261px;
+        height:60px;
+        color: #000000;
+        background:rgba(0,0,0,0.05);
+        left:14px;
+        bottom:0;
+        margin:0;
+        padding-left:30%;
+        padding-top: 3px;
+        display: none;
+        }
+   span{
+    color:#e61d4c;
+}
+</style>
+<div class="container con" >
+    <a href="{% url 'index' %}"><h5>首页/</h5></a>
+
+        <h5><span>{{ goods_obj }}</span></h5>
+        <h3>{{ goods_obj }}</h3>
+
+    <div class="row row01">
+        <div class="col-sm-12 sm01">
+            <div id="my-collapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a data-toggle="dropdown" href="">商品分类
+{#                            <span class="caret">#}
+{#                            </span>#}
+                        </a>
+{#                        <a href="?sort=1" {% if sort == '1' %}class="active"{% endif %}>默认</a>#}
+                        <ul class="dropdown-menu">
+                            <li><a href="?sort=1" class="active" {% if sort == '1' %}{% endif %}>全部</a></li>
+                            <li><a href="?sort=1" class="active" {% if sort == '1' %}{% endif %}>帽子</a></li>
+                            <li><a href="#">口罩</a></li>
+                            <li><a href="#">围巾</a></li>
+                            <li><a href="#">耳环</a></li>
+                        </ul>
+                    </li>
+                    <li style="margin-right:22px">
+                        <a data-toggle="dropdown" href="#">款式<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+{#                            {% for goodsstyle in goodsstyles %}#}
+{#                                 <li><a href="#">{{ goodsstyle.name }}</a></li>#}
+{#                            {% endfor %}#}
+                            <li><a href="?sort=10" class="active" {% if sort == '10' %}{% endif %}>基本款</a></li>
+                            <li><a href="?sort=11" class="active" {% if sort == '11' %}{% endif %}>特殊款</a></li>
+{#                            <li><a href="#">基本款</a></li>#}
+{#                            <li><a href="#"></a></li>#}
+                        </ul>
+                    </li>
+                    <li style="margin-right:22px">
+                        <a data-toggle="dropdown" href="#">价格区间<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="?sort=12" class="active" {% if sort == '12' %}{% endif %}>10-30元</a></li>
+                            <li><a href="?sort=13" class="active" {% if sort == '13' %}{% endif %}>31-50元</a></li>
+                            <li><a href="?sort=14" class="active" {% if sort == '14' %}{% endif %}>51-80元</a></li>
+                        </ul>
+                    </li>
+                    <li style="margin-right:22px">
+                        <a data-toggle="dropdown" href="#">排序<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="?sort=2" class="active" {% if sort == '2' %}{% endif %}>价格从高到底</a></li>
+                            <li><a href="?sort=4" class="active"{% if sort == '4' %}{% endif %}>价格从底到高</a></li>
+                        </ul>
+                    </li>
+                    <li style="margin-right:22px">
+                        <a data-toggle="dropdown" href="#">面料<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="?sort=5" class="active" {% if sort == '5' %}{% endif %}>1612纱卡</a></li>
+                            <li><a href="?sort=6" class="active" {% if sort == '6' %}{% endif %}>磨毛纱卡</a></li>
+                            <li><a href="?sort=7" class="active" {% if sort == '7' %}{% endif %}>条纶</a></li>
+                            <li><a href="?sort=8" class="active" {% if sort == '8' %}{% endif %}>棉麻帆布</a></li>
+                            <li><a href="?sort=9" class="active" {% if sort == '9' %}{% endif %}>网格纱布</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="?sort=3" class="new_goods"{% if sort == '3' %}{% endif %}>新品推荐</a></li>
+
+{#                    <li>#}
+{#                        <a class="new_goods" href="#">新品推荐</a>#}
+{#                    </li>#}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row row02">
+        {% for hat in hats %}
+            <div class="col-md-3 md01">
+                <a href="{% url 'hat_detail' hat.hat_made_Id %}">
+                    <img class="img-responsive " src="{{ hat.image.url }}" alt="">
+                </a>
+                <div class="image01">
+                    <p>{{ hat.hat_name }}</p>
+                    <p class="p01">¥{{ hat.hat_price }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function(){
+        $('.row img').hover(function(){
+             $(this).parent().next().stop().slideDown();
+        },function(){
+            $(this).parent().next().stop().slideUp();
+        })
+    })
+</script>
+{% endblock %}
+

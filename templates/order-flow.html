@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+{% block title %}
+    订单状态
+{% endblock %}
+
+{% block custom_css %}
+<link href="{% static 'css/order-flow.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+<div class="container con">
+    <a href="{% url 'alldiy' %}"><h5 style="float:left">我的订单/</h5></a>
+    <h5><span>订单状态</span></h5>
+    <div class="row order">
+        <div>
+            <span>订单状态</span>
+            <span class="span01">订单编号:{{ change.hat_order_id }}</span>
+        </div>
+    </div>
+    {% for ch in all_change_list %}
+        <div class="box2">
+            <ul class="box1" id="{{ ch.change.hat_update_Id }}">
+                <li class="box3">
+                    <span class="glyphicon glyphicon-ok-sign img-circle" aria-hidden="true"></span>
+                    {{ change.add_time }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单<span>处理中</span>
+                </li>
+
+                {% for all_flow in ch.all_flows %}
+                    <div class="row icon">
+                    {% if all_flow.hat_status_one == '1' %}
+                    <li>
+                        <hr size=500 width="2" color="#d2d2d2">
+                        <span class="glyphicon glyphicon-ok-sign img-circle" aria-hidden="true"></span>
+                        {{ all_flow.add_time_one }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单<span>{{ all_flow.get_hat_status_one_display }}</span>
+                    </li>
+                    {% endif %}
+
+                    {% if all_flow.hat_status_two == '1' %}
+                        <li>
+                            <hr size=500 width="2" color="#d2d2d2">
+                            <span class="glyphicon glyphicon-ok-sign img-circle" aria-hidden="true"></span>
+                            {{ all_flow.add_time_two }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单<span>{{ all_flow.get_hat_status_two_display }}</span>
+                        </li>
+                    {% endif %}
+
+                    {% if all_flow.hat_status_three == '1' %}
+                        <li>
+                            <hr size=500 width="2" color="#d2d2d2">
+                            <span class="glyphicon glyphicon-ok-sign img-circle" aria-hidden="true"></span>
+                            {{ all_flow.add_time_three }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单<span>{{ all_flow.get_hat_status_three_display }}</span>
+                        </li>
+                    {% endif %}
+
+                    {% if all_flow.hat_status_four == '1' %}
+                        <li>
+                            <hr size=500 width="2" color="#d2d2d2">
+                            <span class="glyphicon glyphicon-ok-sign img-circle" aria-hidden="true"></span>
+                            {{ all_flow.add_time_four }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单<span>{{ all_flow.get_hat_status_four_display }}</span>
+                        </li>
+                    {% endif %}
+
+                    {% if all_flow.hat_status_five == '1' %}
+                        <li>
+                            <hr size=500 width="2" color="#d2d2d2">
+                            <span class="glyphicon glyphicon-ok-sign img-circle" aria-hidden="true"></span>
+                            {{ all_flow.add_time_five }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单<span>{{ all_flow.get_hat_status_five_display }}</span>
+                        </li>
+                    {% endif %}
+
+                    {% if all_flow.hat_status_six == '1' %}
+                        <li>
+                            <hr size=500 width="2" color="#d2d2d2">
+                            <span class="glyphicon glyphicon-ok-sign img-circle" aria-hidden="true"></span>
+                            {{ all_flow.add_time_six }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单<span>{{ all_flow.get_hat_status_six_display }}</span>
+                        </li>
+                    {% endif %}
+
+                    {% if all_flow.hat_status_seven == '1' %}
+                        <li>
+                            <hr size=500 width="2" color="#d2d2d2">
+                            <span class="glyphicon glyphicon-ok-sign img-circle" aria-hidden="true"></span>
+                            {{ all_flow.add_time_seven }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单<span>{{ all_flow.get_hat_status_seven_display }}</span>
+                        </li>
+                    {% endif %}
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $(".icon li span").eq(-2).css({"color":"#e61d4c"});
+        var htm = $(".icon li span").eq(-1).html();
+        $(".order span").eq(0).html(htm)
+    })
+</script>
+{% endblock %}

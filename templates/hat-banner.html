@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-sm-5" style="width: 39%;padding-right:0;padding-left:0;position: relative;">
+                {% for banner in banners %}
+                    {% if banner.id == 1 %}
+                        <a href="{% url 'hat' banner.id %}">
+                            <img class="img-responsive" src="{{ banner.image.url }}">
+                        </a>
+                        <table style="position: absolute;top:42%; right: 41%;font-weight:bold;font-size: 20px;display: none">
+                             <tr style="font-family:Arial"><td>&nbsp;King's Store</td></tr>
+                             <tr><td>______________</td></tr>
+                             <tr style="font-family:Microsoft Yahei"><td>&nbsp;&nbsp;&nbsp;{{ banner.name }}</td></tr>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-sm-3" style="width: 29%;padding-right:0;padding-left:10px">
+                {% for banner in banners %}
+                    {% if banner.id == 2 %}
+                        <a href="{% url 'hat' banner.id %}">
+                            <img class="img-responsive" src="{{ banner.image.url }}">
+                        </a>
+                        <table style="position: absolute;top:42%; right: 41%;font-weight:bold;font-size: 20px;display: none">
+                             <tr style="font-family:Arial"><td>&nbsp;King's Store</td></tr>
+                             <tr><td>______________</td></tr>
+                             <tr style="font-family:Microsoft Yahei"><td>&nbsp;&nbsp;&nbsp;{{ banner.name }}</td></tr>
+                        </table>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-sm-4" style="width: 32%;padding-right:0;padding-left:10px">
+                 <div class="row">
+                    <div class="col-md-12" style="padding-left:10px">
+                        {% for banner in banners %}
+                            {% if banner.id == 3 %}
+                                <a href="{% url 'hat' banner.id %}">
+                                    <img class="img-responsive" src="{{ banner.image.url }}" style="margin-bottom:10px">
+                                </a>
+                                <table style="position: absolute;top:9%; right: 37%;font-weight:bold;font-size: 20px;display: none">
+                                     <tr style="font-family:Arial"><td>&nbsp;King's Store</td></tr>
+                                     <tr><td>______________</td></tr>
+                                     <tr style="font-family:Microsoft Yahei"><td>&nbsp;&nbsp;&nbsp;{{ banner.name }}</td></tr>
+                                </table>
+                            {% endif %}
+
+                            {% if banner.id == 4 %}
+                                <a href="{% url 'hat' banner.id %}">
+                                    <img class="img-responsive" src="{{ banner.image.url }}" style="margin-bottom:10px">
+                                </a>
+                                <table style="position: absolute;top:45%; right: 37%;font-weight:bold;font-size: 20px;display: none">
+                                     <tr style="font-family:Arial"><td>&nbsp;King's Store</td></tr>
+                                     <tr><td>______________</td></tr>
+                                     <tr style="font-family:Microsoft Yahei"><td>&nbsp;&nbsp;&nbsp;{{ banner.name }}</td></tr>
+                                </table>
+                            {% endif %}
+
+                            {% if banner.id == 5 %}
+                                <a href="{% url 'hat' banner.id %}">
+                                    <img class="img-responsive" src="{{ banner.image.url }}">
+                                </a>
+                                <table style="position: absolute;top:78%; right: 37%;font-weight:bold;font-size: 20px;display: none">
+                                     <tr style="font-family:Arial"><td>&nbsp;King's Store</td></tr>
+                                     <tr><td>______________</td></tr>
+                                     <tr style="font-family:Microsoft Yahei"><td>&nbsp;&nbsp;&nbsp;{{ banner.name }}</td></tr>
+                                </table>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+<script type="text/javascript">
+    (function(){
+        $('.row img').hover(function(){
+            //.fadeTo(时间,透明度);
+            $(this).stop().fadeTo(500,0.3).parent().next().show();
+        },function(){
+            $(this).stop().fadeTo(500,1).parent().next().hide();
+        })
+
+        $('table').hover(function(){
+            $(this).show();
+            $(this).prev().children().stop().fadeTo(500,0.3).show();
+        },function(){});
+
+    })()
+</script>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+{% load staticfiles %}
+{% block title %}
+   留言回复
+{% endblock %}
+
+{% block custom_css %}
+<link href="{% static 'css/message-reply.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" >
+    <a href="{% url 'alldiy' %}"><h5>我的订单/</h5></a>
+    <h5><span>我的留言</span></h5>
+
+    <div class="row row01">
+        <li><span>我的留言</span><span class="num01">订单编号:{{ change.hat_order_id }}</span></li>
+    </div>
+
+    {% for ch in all_change_list %}
+    <ul class="box2" id="{{ ch.change.hat_update_Id }}">
+        <div class="row icon">
+            <form class="bs-example bs-example-form" id="jsStayForm" role="form">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="hat_remark" id="hat_remark" placeholder="请留言" maxlength="1000" style="width: 630px;">
+                    <span class="input-group-btn">
+                        <input class="btn btn-default" type="text" id="jsStayBtn" value="发送">
+                    </span>
+                </div>
+                {% csrf_token %}
+            </form>
+            {% for hat_message in ch.hat_message %}
+                <li>
+                    <h4>我：{{ hat_message.hat_remark }}</h4>
+                    <span>{{ hat_message.add_time }}</span>
+                </li>
+                <hr>
+                <li>
+                    <h4 class="reply">商家：{{ hat_message.hat_message_reply }}</h4>
+                    <span class="add_time2" style="">{{ hat_message.add_time2 }}</span>
+                </li>
+                <hr>
+            {% endfor %}
+        </div>
+    </ul>
+    {% endfor %}
+ </div>
+
+<script type="text/javascript">
+    $(function ($) {
+        $('#jsStayBtn').click(function (e) {
+            var hat_remark = $("#hat_remark").val()
+            var hat_update_Id = $(".box2").attr('id')
+            $.ajax({
+                type: "post",
+                data: {
+                    "hat_remark": hat_remark,
+                    "hat_update_Id":hat_update_Id,
+                    "usern":"{{ user.username }}",
+                },
+                datatype: 'JSON',
+                url: "/messages/hat_update_Id",
+                cache: false,
+                success: function (result) {
+                    console.log(this.data)
+                    alert(result.msg)
+                    window.location.reload()
+                },error: function (e) {
+                    console.log(this.data)
+                }
+            });
+        });
+    })
+
+</script>
+
+{% endblock %}
