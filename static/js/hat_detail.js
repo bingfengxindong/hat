@@ -17,23 +17,23 @@ jq164(function ($) {
             this.checked()
         }
         var hat_total_price = $("#hat_total_price").val();
-        total = parseInt(matrial.split('+')[1]) + parseInt(hat_total_price);
+        total = parseFloat(matrial.split('+')[1]) + parseFloat(hat_total_price);
 
         var c_price = $('#c_price').text();
         var c_plus_price = $("input[name=hat_change_prices_tmp]").val();
         if (c_plus_price == "") {
             c_plus_price = 0;
         } else {
-            c_plus_price = parseInt(c_plus_price);
+            c_plus_price = parseFloat(c_plus_price);
         }
 
-        $("#new_total_price").val(parseInt(c_price) + c_plus_price);
-        var number = parseInt($('#hat_nums').val());
-        var new_hat_total_price = (parseInt(c_price) + c_plus_price) * number;
+        $("#new_total_price").val(parseFloat(c_price) + c_plus_price);
+        var number = parseFloat($('#hat_nums').val());
+        var new_hat_total_price = (parseFloat(c_price) + c_plus_price) * number;
         $("#hat_total_price").val(new_hat_total_price);
         if( number >= 2000){
             $("#price_show").show();
-            $("#hat_total_price").val(parseInt((new_hat_total_price) * 0.8)) //条件判断
+            $("#hat_total_price").val(parseFloat((new_hat_total_price) * 0.8)) //条件判断
 
         }else {
         }
@@ -46,12 +46,27 @@ jq164(function ($) {
         if (c_plus_price == "") {
             c_plus_price = 0;
         } else {
-            c_plus_price = parseInt(c_plus_price);
+            c_plus_price = parseFloat(c_plus_price);
         }
-        $("#hat_total_price").val(((parseInt(c_price) + c_plus_price) * this.value));
+        $("#hat_total_price").val(((parseFloat(c_price) + c_plus_price) * this.value).toFixed(2));
         if( this.value  >= 2000){
             $("#price_show").show();
-            $("#hat_total_price").val(parseInt(((parseInt(c_price) + c_plus_price) * this.value) * 0.8)) //条件判断
+            $("#hat_total_price").val(parseFloat(((parseFloat(c_price) + c_plus_price) * this.value) * 0.8).toFixed(2)) //条件判断
+        }
+    });
+
+    $("#hat_nums").keyup(function(){
+        var c_price = $('#c_price').text();
+        var c_plus_price = $("input[name=hat_change_prices_tmp]").val();
+        if (c_plus_price == "") {
+            c_plus_price = 0;
+        } else {
+            c_plus_price = parseFloat(c_plus_price);
+        }
+        $("#hat_total_price").val(((parseFloat(c_price) + c_plus_price) * this.value).toFixed(2));
+        if( this.value  >= 2000){
+            $("#price_show").show();
+            $("#hat_total_price").val(parseFloat(((parseFloat(c_price) + c_plus_price) * this.value) * 0.8).toFixed(2)) //条件判断
         }
     });
 

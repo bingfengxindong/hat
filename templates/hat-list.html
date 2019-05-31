@@ -25,7 +25,8 @@
         margin:0;
         padding-left:30%;
         padding-top: 3px;
-        display: none;
+        {#display: none;#}
+        display: inline-block;
         }
    span{
     color:#e61d4c;
@@ -119,14 +120,14 @@
 </div>
 
 
-<script type="text/javascript">
-    $(function(){
-        $('.row img').hover(function(){
-             $(this).parent().next().stop().slideDown();
-        },function(){
-            $(this).parent().next().stop().slideUp();
-        })
-    })
-</script>
+{#<script type="text/javascript">#}
+{#    $(function(){#}
+        {#$('.row img').hover(function(){#}
+        {#     $(this).parent().next().stop().slideDown();#}
+        {#{,function(){#}
+        {#    $(this).parent().next().stop().slideUp();#}
+        {#{)#}
+{#    })#}
+{#</script>#}
 {% endblock %}
 
