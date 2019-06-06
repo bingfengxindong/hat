@@ -8,7 +8,7 @@ jq164(function ($) {
             $("input[name=hat_change_prices_tmp]").val(0);
             $("#back_c").hide()
         } else {
-            $("input[name=hat_change_prices_tmp]").val(parseInt(matrial.split('+')[1]));
+            $("input[name=hat_change_prices_tmp]").val(parseFloat(matrial.split('+')[1]));
             $("#back_c").show()
         }
         var total = '';
